@@ -19,7 +19,7 @@ readme = "README.md"
 license = "Apache-2.0 WITH LLVM-exception"
 repository = "https://github.com/bytecodealliance/regalloc.rs"
 [dependencies]
-sgx_tstd = { git = "https://github.com/apache/teaclave-sgx-sdk", rev = "v1.1.4"}
+sgx_tstd = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk", rev = "v1.1.4"}
 [dependencies.log]
 version = "0.4.8"
 default-features = false

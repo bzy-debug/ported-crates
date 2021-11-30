@@ -28,7 +28,7 @@ resolver = "2"
 name = "x64-evex-encoding"
 harness = false
 [dependencies]
-sgx_tstd = { git = "https://github.com/apache/teaclave-sgx-sdk", rev = "v1.1.4"}
+sgx_tstd = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk", rev = "v1.1.4"}
 [dependencies.bincode]
 version = "1.2.1"
 optional = true

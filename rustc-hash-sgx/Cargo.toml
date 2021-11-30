@@ -21,7 +21,7 @@ license = "Apache-2.0/MIT"
 repository = "https://github.com/rust-lang-nursery/rustc-hash"
 
 [dependencies]
-sgx_tstd = { git = "https://github.com/apache/teaclave-sgx-sdk", rev = "v1.1.4"}
+sgx_tstd = { git = "https://github.com/apache/incubator-teaclave-sgx-sdk", rev = "v1.1.4"}
 
 [features]
 default = ["std"]
