@@ -46,7 +46,7 @@
     )
 )]
 #![no_std]
-extern crate sgx_tstd as alloc;
+extern crate alloc;
 
 // Re-export core so that the macros works with both std and no_std crates
 #[doc(hidden)]
