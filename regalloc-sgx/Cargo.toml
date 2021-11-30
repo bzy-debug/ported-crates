@@ -33,7 +33,8 @@ path = "../rustc-hash-sgx"
 version = "1.0.94"
 features = ["derive"]
 optional = true
-git = "https://github.com/mesalock-linux/serde-sgx"
+# git = "https://github.com/mesalock-linux/serde-sgx"
+path = "../serde-sgx/serde"
 
 [dependencies.smallvec]
 version = "1.6.1"

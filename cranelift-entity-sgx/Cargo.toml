@@ -28,7 +28,8 @@ sgx_tstd = { git = "https://github.com/apache/teaclave-sgx-sdk", rev = "v1.1.4"}
 version = "1.0.118"
 features = ["derive"]
 optional = true
-git = "https://github.com/mesalock-linux/serde-sgx"
+# git = "https://github.com/mesalock-linux/serde-sgx"
+path = "../serde-sgx/serde"
 
 [features]
 enable-serde = ["serde"]

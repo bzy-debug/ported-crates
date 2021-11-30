@@ -48,7 +48,8 @@ optional = true
 version = "1.0"
 optional = true
 default-features = false
-git = "https://github.com/mesalock-linux/serde-sgx"
+# git = "https://github.com/mesalock-linux/serde-sgx"
+path = "../serde-sgx/serde"
 [dev-dependencies.fnv]
 version = "1.0"
 
