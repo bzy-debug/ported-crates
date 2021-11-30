@@ -11,14 +11,17 @@ checksum = "22a9137b95ea06864e018375b72adfb7db6e6f68cfc8df5a04d00288050485ee"
 [[package]]
 name = "hashbrown_tstd"
 version = "0.11.2"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 
 [[package]]
 name = "sgx_alloc"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 
 [[package]]
 name = "sgx_backtrace_sys"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 dependencies = [
  "cc",
  "sgx_build_helper",
@@ -28,14 +31,17 @@ dependencies = [
 [[package]]
 name = "sgx_build_helper"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 
 [[package]]
 name = "sgx_demangle"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 
 [[package]]
 name = "sgx_libc"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 dependencies = [
  "sgx_types",
 ]
@@ -43,6 +49,7 @@ dependencies = [
 [[package]]
 name = "sgx_tprotected_fs"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 dependencies = [
  "sgx_trts",
  "sgx_types",
@@ -51,6 +58,7 @@ dependencies = [
 [[package]]
 name = "sgx_trts"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 dependencies = [
  "sgx_libc",
  "sgx_types",
@@ -59,6 +67,7 @@ dependencies = [
 [[package]]
 name = "sgx_tstd"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 dependencies = [
  "hashbrown_tstd",
  "sgx_alloc",
@@ -74,10 +83,12 @@ dependencies = [
 [[package]]
 name = "sgx_types"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 
 [[package]]
 name = "sgx_unwind"
 version = "1.1.4"
+source = "git+https://github.com/apache/incubator-teaclave-sgx-sdk?rev=v1.1.4#863378876c55025084572e22554bbedd57eead97"
 dependencies = [
  "sgx_build_helper",
 ]
