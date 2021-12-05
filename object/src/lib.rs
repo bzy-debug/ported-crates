@@ -52,6 +52,7 @@
 //! }
 //! ```
 
+#![feature(rustc_private)]
 #![deny(missing_docs)]
 #![deny(missing_debug_implementations)]
 #![no_std]
@@ -83,6 +84,7 @@ extern crate alloc;
 #[macro_use]
 // extern crate std;
 extern crate sgx_tstd as std;
+extern crate memchr;
 
 mod common;
 pub use common::*;
