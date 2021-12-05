@@ -23,7 +23,8 @@ repository = "https://github.com/bytecodealliance/wasmtime"
 resolver = "2"
 [dependencies.anyhow]
 version = "1.0"
-default-features = false
+# git = "https://github.com/mesalock-linux/anyhow-sgx"
+git = "https://github.com/bzy-debug/ported-crates"
 
 [dependencies.cfg-if]
 version = "1.0"

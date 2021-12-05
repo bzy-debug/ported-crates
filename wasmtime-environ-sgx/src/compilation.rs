@@ -1,6 +1,7 @@
 //! A `Compilation` contains the compiled function bodies for a WebAssembly
 //! module.
 
+use std::format;
 use std::prelude::v1::*;
 use crate::{
     DefinedFuncIndex, FilePos, FunctionBodyData, ModuleTranslation, PrimaryMap, SignatureIndex,
