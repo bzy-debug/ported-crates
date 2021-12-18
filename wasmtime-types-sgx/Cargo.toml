@@ -33,7 +33,6 @@ path = "../serde-sgx/serde"
 
 [dependencies.thiserror]
 version = "1.0.4"
-# git = "https://github.com/mesalock-linux/thiserror-sgx"
 path = "../thiserror-sgx"
 
 [dependencies.wasmparser]

@@ -26,7 +26,7 @@ name = "parse-fail"
 harness = false
 [dependencies.leb128]
 version = "0.2"
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../leb128-sgx"
 
 [dependencies]
 sgx_tstd = {rev = "v1.1.4", git = "https://github.com/apache/incubator-teaclave-sgx-sdk"}

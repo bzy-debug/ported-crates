@@ -23,26 +23,25 @@ repository = "https://github.com/bytecodealliance/wasmtime"
 resolver = "2"
 [dependencies.anyhow]
 version = "1.0"
-# git = "https://github.com/mesalock-linux/anyhow-sgx"
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../anyhow-sgx"
 
 [dependencies.cfg-if]
 version = "1.0"
 
 [dependencies.cranelift-entity]
 version = "0.78.0"
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../cranelift-entity-sgx"
 
 [dependencies.gimli]
 version = "0.25.0"
 features = ["read"]
 default-features = false
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../gimli-0.25.0-sgx"
 
 [dependencies.indexmap]
 version = "1.0.2"
 features = ["serde-1"]
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../indexmap-sgx"
 
 [dependencies.log]
 version = "0.4.8"
@@ -55,27 +54,27 @@ version = "0.2.1"
 version = "0.27.0"
 features = ["read_core", "write_core", "elf"]
 default-features = false
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../object-sgx"
 
 [dependencies.serde]
 version = "1.0.94"
 features = ["derive"]
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../serde-sgx/serde"
 
 [dependencies.target-lexicon]
 version = "0.12"
 
 [dependencies.thiserror]
 version = "1.0.4"
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../thiserror-sgx"
 
 [dependencies.wasmparser]
 version = "0.81"
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../wasmparser-sgx"
 
 [dependencies.wasmtime-types]
 version = "0.31.0"
-git = "https://github.com/bzy-debug/ported-crates"
+path = "../wasmtime-types-sgx"
 
 [dependencies]
 sgx_tstd = { rev = "v1.1.4", git = "https://github.com/apache/incubator-teaclave-sgx-sdk"}
