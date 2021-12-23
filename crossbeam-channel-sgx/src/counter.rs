@@ -54,6 +54,7 @@ impl<C> Sender<C> {
         // just abort when the count becomes very large.
         if count > isize::MAX as usize {
             // process::abort();
+            panic!();
         }
 
         Sender {
@@ -109,6 +110,7 @@ impl<C> Receiver<C> {
         // just abort when the count becomes very large.
         if count > isize::MAX as usize {
             // process::abort();
+            panic!();
         }
 
         Receiver {
