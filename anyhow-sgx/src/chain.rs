@@ -1,11 +1,10 @@
+use std::prelude::v1::*;
+
 use self::ChainState::*;
 use crate::StdError;
 
 #[cfg(feature = "std")]
 use std::vec;
-
-#[cfg(feature = "std")]
-use std::prelude::v1::*;
 
 #[cfg(feature = "std")]
 pub(crate) use crate::Chain;
@@ -27,6 +26,7 @@ pub(crate) enum ChainState<'a> {
 }
 
 impl<'a> Chain<'a> {
+    #[cold]
     pub fn new(head: &'a (dyn StdError + 'static)) -> Self {
         Chain {
             state: ChainState::Linked { next: Some(head) },

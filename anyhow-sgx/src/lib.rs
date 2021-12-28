@@ -1,3 +1,11 @@
+//! [![github]](https://github.com/dtolnay/anyhow)&ensp;[![crates-io]](https://crates.io/crates/anyhow)&ensp;[![docs-rs]](https://docs.rs/anyhow)
+//!
+//! [github]: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+//! [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
+//! [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logoColor=white&logo=data:image/svg+xml;base64,PHN2ZyByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDUxMiA1MTIiPjxwYXRoIGZpbGw9IiNmNWY1ZjUiIGQ9Ik00ODguNiAyNTAuMkwzOTIgMjE0VjEwNS41YzAtMTUtOS4zLTI4LjQtMjMuNC0zMy43bC0xMDAtMzcuNWMtOC4xLTMuMS0xNy4xLTMuMS0yNS4zIDBsLTEwMCAzNy41Yy0xNC4xIDUuMy0yMy40IDE4LjctMjMuNCAzMy43VjIxNGwtOTYuNiAzNi4yQzkuMyAyNTUuNSAwIDI2OC45IDAgMjgzLjlWMzk0YzAgMTMuNiA3LjcgMjYuMSAxOS45IDMyLjJsMTAwIDUwYzEwLjEgNS4xIDIyLjEgNS4xIDMyLjIgMGwxMDMuOS01MiAxMDMuOSA1MmMxMC4xIDUuMSAyMi4xIDUuMSAzMi4yIDBsMTAwLTUwYzEyLjItNi4xIDE5LjktMTguNiAxOS45LTMyLjJWMjgzLjljMC0xNS05LjMtMjguNC0yMy40LTMzLjd6TTM1OCAyMTQuOGwtODUgMzEuOXYtNjguMmw4NS0zN3Y3My4zek0xNTQgMTA0LjFsMTAyLTM4LjIgMTAyIDM4LjJ2LjZsLTEwMiA0MS40LTEwMi00MS40di0uNnptODQgMjkxLjFsLTg1IDQyLjV2LTc5LjFsODUtMzguOHY3NS40em0wLTExMmwtMTAyIDQxLjQtMTAyLTQxLjR2LS42bDEwMi0zOC4yIDEwMiAzOC4ydi42em0yNDAgMTEybC04NSA0Mi41di03OS4xbDg1LTM4Ljh2NzUuNHptMC0xMTJsLTEwMiA0MS40LTEwMi00MS40di0uNmwxMDItMzguMiAxMDIgMzguMnYuNnoiPjwvcGF0aD48L3N2Zz4K
+//!
+//! <br>
+//!
 //! This library provides [`anyhow::Error`][Error], a trait object based error
 //! type for easy idiomatic error handling in Rust applications.
 //!
@@ -120,10 +128,11 @@
 //!   # ;
 //!   ```
 //!
-//! - If using the nightly channel, a backtrace is captured and printed with the
-//!   error if the underlying error type does not already provide its own. In
-//!   order to see backtraces, they must be enabled through the environment
-//!   variables described in [`std::backtrace`]:
+//! - If using the nightly channel, or stable with `features = ["backtrace"]`, a
+//!   backtrace is captured and printed with the error if the underlying error
+//!   type does not already provide its own. In order to see backtraces, they
+//!   must be enabled through the environment variables described in
+//!   [`std::backtrace`]:
 //!
 //!   - If you want panics and errors to both have backtraces, set
 //!     `RUST_BACKTRACE=1`;
@@ -171,6 +180,18 @@
 //!   # }
 //!   ```
 //!
+//!   A `bail!` macro is provided as a shorthand for the same early return.
+//!
+//!   ```
+//!   # use anyhow::{bail, Result};
+//!   #
+//!   # fn demo() -> Result<()> {
+//!   #     let missing = "...";
+//!   bail!("Missing attribute: {}", missing);
+//!   #     Ok(())
+//!   # }
+//!   ```
+//!
 //! <br>
 //!
 //! # No-std support
@@ -189,48 +210,47 @@
 //! will require an explicit `.map_err(Error::msg)` when working with a
 //! non-Anyhow error type inside a function that returns Anyhow's error type.
 
-#![doc(html_root_url = "https://docs.rs/anyhow/1.0.28")]
-#![cfg_attr(backtrace, feature(backtrace))]
+#![doc(html_root_url = "https://docs.rs/anyhow/1.0.49")]
+// #![cfg_attr(backtrace, feature(backtrace))]
 #![cfg_attr(doc_cfg, feature(doc_cfg))]
 #![cfg_attr(not(feature = "std"), no_std)]
+#![deny(dead_code, unused_imports, unused_mut)]
 #![allow(
+    clippy::doc_markdown,
+    clippy::enum_glob_use,
+    clippy::missing_errors_doc,
+    clippy::missing_panics_doc,
+    clippy::module_name_repetitions,
+    clippy::must_use_candidate,
     clippy::needless_doctest_main,
     clippy::new_ret_no_self,
+    clippy::redundant_else,
+    clippy::unused_self,
+    clippy::used_underscore_binding,
+    clippy::wildcard_imports,
     clippy::wrong_self_convention
 )]
-#![cfg_attr(all(feature = "mesalock_sgx",
-                not(target_env = "sgx")), no_std)]
-#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
-
-#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#![no_std]
 #[macro_use]
 extern crate sgx_tstd as std;
 
-mod alloc {
-    #[cfg(not(feature = "std"))]
-    extern crate alloc;
-
-    #[cfg(not(feature = "std"))]
-    pub use alloc::boxed::Box;
-
-    #[cfg(feature = "std")]
-    pub use std::boxed::Box;
-}
+extern crate alloc;
 
 #[macro_use]
 mod backtrace;
 mod chain;
 mod context;
+mod ensure;
 mod error;
 mod fmt;
 mod kind;
 mod macros;
+mod ptr;
 mod wrapper;
 
-use crate::alloc::Box;
 use crate::error::ErrorImpl;
+use crate::ptr::Own;
 use core::fmt::Display;
-use core::mem::ManuallyDrop;
 
 #[cfg(not(feature = "std"))]
 use core::fmt::Debug;
@@ -281,6 +301,15 @@ pub use anyhow as format_err;
 /// The Debug format "{:?}" includes your backtrace if one was captured. Note
 /// that this is the representation you get by default if you return an error
 /// from `fn main` instead of printing it explicitly yourself.
+///
+/// ```console
+/// Error: Failed to read instrs from ./path/to/instrs.json
+///
+/// Caused by:
+///     No such file or directory (os error 2)
+/// ```
+///
+/// and if there is a backtrace available:
 ///
 /// ```console
 /// Error: Failed to read instrs from ./path/to/instrs.json
@@ -339,8 +368,9 @@ pub use anyhow as format_err;
 ///     # Ok(())
 /// }
 /// ```
+#[repr(transparent)]
 pub struct Error {
-    inner: ManuallyDrop<Box<ErrorImpl<()>>>,
+    inner: Own<ErrorImpl>,
 }
 
 /// Iterator of a chain of source errors.
@@ -363,6 +393,7 @@ pub struct Error {
 /// }
 /// ```
 #[cfg(feature = "std")]
+#[cfg_attr(doc_cfg, doc(cfg(feature = "std")))]
 #[derive(Clone)]
 pub struct Chain<'a> {
     state: crate::chain::ChainState<'a>,
@@ -574,16 +605,41 @@ pub trait Context<T, E>: context::private::Sealed {
         F: FnOnce() -> C;
 }
 
+/// Equivalent to `Ok::<_, anyhow::Error>(value)`.
+///
+/// This simplifies creation of an anyhow::Result in places where type inference
+/// cannot deduce the `E` type of the result &mdash; without needing to write
+/// `Ok::<_, anyhow::Error>(value)`.
+///
+/// One might think that `anyhow::Result::Ok(value)` would work in such cases
+/// but it does not.
+///
+/// ```console
+/// error[E0282]: type annotations needed for `std::result::Result<i32, E>`
+///   --> src/main.rs:11:13
+///    |
+/// 11 |     let _ = anyhow::Result::Ok(1);
+///    |         -   ^^^^^^^^^^^^^^^^^^ cannot infer type for type parameter `E` declared on the enum `Result`
+///    |         |
+///    |         consider giving this pattern the explicit type `std::result::Result<i32, E>`, where the type parameter `E` is specified
+/// ```
+#[doc(hidden)]
+#[allow(non_snake_case)]
+pub fn Ok<T>(t: T) -> Result<T> {
+    Result::Ok(t)
+}
+
 // Not public API. Referenced by macro-generated code.
 #[doc(hidden)]
 pub mod private {
     use crate::Error;
-    use core::fmt::{Debug, Display};
+    use alloc::fmt;
+    use core::fmt::Arguments;
 
-    #[cfg(backtrace)]
-    use std::backtrace::Backtrace;
-
+    pub use crate::ensure::{BothDebug, NotBothDebug};
+    pub use alloc::format;
     pub use core::result::Result::Err;
+    pub use core::{concat, format_args, stringify};
 
     #[doc(hidden)]
     pub mod kind {
@@ -593,10 +649,21 @@ pub mod private {
         pub use crate::kind::BoxedKind;
     }
 
-    pub fn new_adhoc<M>(message: M) -> Error
-    where
-        M: Display + Debug + Send + Sync + 'static,
-    {
-        Error::from_adhoc(message, backtrace!())
+    #[doc(hidden)]
+    #[inline]
+    #[cold]
+    pub fn format_err(args: Arguments) -> Error {
+        #[cfg(anyhow_no_fmt_arguments_as_str)]
+        let fmt_arguments_as_str = None::<&str>;
+        #[cfg(not(anyhow_no_fmt_arguments_as_str))]
+        let fmt_arguments_as_str = args.as_str();
+
+        if let Some(message) = fmt_arguments_as_str {
+            // anyhow!("literal"), can downcast to &'static str
+            Error::msg(message)
+        } else {
+            // anyhow!("interpolate {var}"), can downcast to String
+            Error::msg(fmt::format(args))
+        }
     }
 }
